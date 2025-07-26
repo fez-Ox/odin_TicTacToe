@@ -9,13 +9,15 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .game-container {
   display: grid;
   grid-template-rows: repeat(3, 50px);
   grid-template-columns: repeat(3, 50px);
-  gap:10px;
+  gap: 10px;
 }
 
 .game-div {
@@ -26,4 +28,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.addname-dialog[open]{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  padding: 20px;
+  min-width: 40%;
+  min-height: 40%;
+}
+
+.addname-dialog[open]> h2 {
+  margin-bottom: 20px;
+}
+
+.dialogsubmit-btn {
+  margin-top: 20px;
+}
+
+.firstinput {
+  margin-bottom: 10px;
+}
+
+.addname-dialog[open] > form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: stretch;
 }

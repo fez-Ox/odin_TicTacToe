@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <dialog class="addname-dialog" open>
+      <form method="dialog">
+        <h2>Enter Player Names:</h2>
+        <label for="x-name">Player X Name:</label>
+        <input
+          type="text"
+          id="x-name"
+          name="xName"
+          class="firstinput"
+          required
+        />
+        <label for="o-name">Player O Name:</label>
+        <input type="text" id="o-name" name="oName" required />
+        <button type="submit" class="dialogsubmit-btn">Submit</button>
+      </form>
+    </dialog>
+
     <div class="game-container">
       <div class="game-div" data-xy="00"></div>
       <div class="game-div" data-xy="01"></div>
@@ -18,6 +35,9 @@
       <div class="game-div" data-xy="21"></div>
       <div class="game-div" data-xy="22"></div>
     </div>
+
+    <button class="restart-btn">Restart the Game</button>
+    <div class="end-msg"></div>
     <script src="script.js"></script>
   </body>
 </html>
