@@ -90,7 +90,15 @@ const Gameboard = (function () {
     }
   }
 
-  return { gameboard, playerMove, checkGameFinish, display, getWin, getTie, restart };
+  return {
+    gameboard,
+    playerMove,
+    checkGameFinish,
+    display,
+    getWin,
+    getTie,
+    restart,
+  };
 })();
 
 const displayController = (function () {
@@ -119,9 +127,10 @@ const displayController = (function () {
       `[data-xy="${String(x) + String(y)}"]`
     );
 
-    if (gameBox.textContent != "") return;
+    if (gameBox.textContent != "") return false;
 
     gameBox.textContent = currType;
+    return true;
   }
 
   const gameBoxes = document.querySelectorAll(".game-div");
@@ -133,24 +142,21 @@ const displayController = (function () {
       let xCord = Number(coords[0]);
       let yCord = Number(coords[1]);
 
-      updatePlayerPos(xCord, yCord);
-      Gameboard.playerMove(xCord, yCord, currType);
-      const endMsg = document.querySelector(".end-msg");
+      if (!Gameboard.getWin() && updatePlayerPos(xCord, yCord)) {
+        Gameboard.playerMove(xCord, yCord, currType);
+        const endMsg = document.querySelector(".end-msg");
 
-      if (Gameboard.getWin()) {
-        let winnerName = currType === "X" ? xName : oName;
-        endMsg.textContent = `${winnerName} has won the match.`;
+        if (Gameboard.getWin()) {
+          let winnerName = currType === "X" ? xName : oName;
+          endMsg.textContent = `${winnerName} has won the match.`;
+        }
 
-        gameBoxes.forEach((box) => {
-          box.removeEventListener("click", () => {});
-        });
+        if (Gameboard.getTie()) {
+          endMsg.textContent = `The Match has been tied`;
+        }
+
+        currType = currType === "X" ? "O" : "X";
       }
-
-      if (Gameboard.getTie()) {
-        endMsg.textContent = `The Match has been tied`;
-      }
-
-      currType = currType === "X" ? "O" : "X";
     });
   });
 
