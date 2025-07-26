@@ -1,3 +1,3 @@
 # odin_TicTacToe
 
-Let's hope this works.
+A TicTacToe game based on the assignment requirements from TheOdinProject
